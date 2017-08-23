@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER darg
+MAINTAINER tsmh
 
 RUN apt-get update \ 
     && apt-get upgrade -y \
@@ -37,10 +37,10 @@ COPY Secrets/Config.json Server/Secrets/
 
 EXPOSE 8081
  
-RUN useradd -ms /bin/bash darg
-RUN usermod -a -G sudo darg
-RUN echo 'darg:darg' | chpasswd
+RUN useradd -ms /bin/bash tsmh
+RUN usermod -a -G sudo tsmh
+RUN echo 'tsmh:tsmh' | chpasswd
 
-USER darg
-WORKDIR /home/darg
+USER tsmh
+WORKDIR /home/tsmh
 
