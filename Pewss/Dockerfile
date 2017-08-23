@@ -31,14 +31,14 @@ RUN git clone https://github.com/darg20127/Pewss /Pewss
 RUN npm install -g yarn \
     && yarn install
 
-RUN mkdir Server/Secrets/TLS
+RUN mkdir Server/Secrets/TLS/
 COPY Secrets/TLS/* Server/Secrets/TLS
 COPY Secrets/Config.json Server/Secrets/
 
 EXPOSE 8081
  
 RUN useradd -ms /bin/bash tsmh
-RUN usermod -a -G sudo tsmh
+RUN usermod -aG sudo tsmh
 RUN echo 'tsmh:tsmh' | chpasswd
 
 USER tsmh
