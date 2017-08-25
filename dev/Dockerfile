@@ -14,7 +14,7 @@ RUN apt-get update \
 
 EXPOSE 8080 8081 37241 1068
  
-RUN useradd -ms /bin/bash tsmh
+RUN useradd -ms /usr/bin/zsh tsmh
 RUN usermod -aG sudo tsmh
 RUN echo 'tsmh:tsmh' | chpasswd
 RUN echo 'tsmh ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tsmh 
