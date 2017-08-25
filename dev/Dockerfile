@@ -9,7 +9,8 @@ RUN apt-get update \
 	  git \
 	  curl \
     zsh \
-	  tmux 
+	  tmux \
+    python 
 
 EXPOSE 8080 8081 37241 1068
  
@@ -20,6 +21,6 @@ RUN echo 'tsmh ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tsmh
 USER tsmh
 WORKDIR /home/tsmh
 
-RUN git clone git@gitlab.com:tsmh/AutoLife.git
+RUN git clone https://gitlab.com/tsmh/AutoLife.git
 
 
