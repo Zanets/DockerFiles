@@ -22,5 +22,5 @@ USER tsmh
 WORKDIR /home/tsmh
 
 RUN git clone https://gitlab.com/tsmh/AutoLife.git
-
+RUN mkdir .ssh
 
