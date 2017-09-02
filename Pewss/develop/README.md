@@ -5,5 +5,5 @@ docker build -t pewss_dev .
 
 # -it makes it able to be attach.
 # -p publish private port (expose in dockerfile)
-docker run -idt -p 8081:8081 -p 37241:37241 --name pewss_dev pewss_dev 
+docker run -idt -p 8081:8081 -p 37241:22 --name pewss_dev pewss_dev 
 ```
