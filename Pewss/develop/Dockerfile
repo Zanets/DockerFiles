@@ -4,16 +4,14 @@ MAINTAINER tsmh
 RUN apt-get update \ 
     && apt-get upgrade -y \
     && apt-get install -y \
-	vim \
-	sudo \
-	git \
-	curl \
-	mongodb \
-	redis-server \
-	tmux \
-  zsh \
-	default-jdk \
-  openssh-server
+	  vim \
+	  git \
+	  curl \
+	  mongodb \
+	  redis-server \
+	  tmux \
+	  default-jdk \
+    openssh-server
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.4.0
@@ -37,13 +35,5 @@ COPY cert.pem Server/Secrets/TLS
 COPY key.pem Server/Secrets/TLS
 COPY Config.json Server/Secrets/
 
-EXPOSE 8081 22
+EXPOSE 8081
  
-RUN useradd -ms /usr/bin/zsh tsmh
-RUN usermod -aG sudo tsmh
-RUN echo 'tsmh:tsmh' | chpasswd
-CMD ["/usr/sbin/sshd", "-D"]
-
-
-USER tsmh
-WORKDIR /home/tsmh

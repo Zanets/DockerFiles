@@ -10,17 +10,15 @@ RUN apt-get update \
 	  curl \
     zsh \
 	  tmux \
-    python 
+    python \
+    openssh-server
 
-EXPOSE 8080 8081 37241 1068
+EXPOSE 8080 8081 22
  
 RUN useradd -ms /usr/bin/zsh tsmh
 RUN usermod -aG sudo tsmh
 RUN echo 'tsmh:tsmh' | chpasswd
 RUN echo 'tsmh ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tsmh 
-USER tsmh
-WORKDIR /home/tsmh
 
-RUN git clone https://gitlab.com/tsmh/AutoLife.git
-RUN mkdir .ssh
+CMD ["/usr/sbin/sshd", "-D"]
 
