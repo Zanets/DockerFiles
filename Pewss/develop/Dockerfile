@@ -11,10 +11,10 @@ RUN apt-get update \
 	mongodb \
 	redis-server \
 	tmux \
-	default-jdk
+  zsh \
+	default-jdk \
+  openssh-server
 
-RUN service mongodb start
-RUN service redis-server start
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.4.0
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash \
@@ -26,21 +26,24 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 RUN mkdir /Pewss
+RUN mkdir /var/run/sshd
 WORKDIR /Pewss
 RUN git clone https://github.com/darg20127/Pewss /Pewss
 RUN npm install -g yarn \
     && yarn install
 
 RUN mkdir Server/Secrets/TLS/
-COPY Secrets/TLS/* Server/Secrets/TLS
-COPY Secrets/Config.json Server/Secrets/
+COPY cert.pem Server/Secrets/TLS
+COPY key.pem Server/Secrets/TLS
+COPY Config.json Server/Secrets/
 
-EXPOSE 8081
+EXPOSE 8081 37241
  
-RUN useradd -ms /bin/bash tsmh
+RUN useradd -ms /usr/bin/zsh tsmh
 RUN usermod -aG sudo tsmh
 RUN echo 'tsmh:tsmh' | chpasswd
+CMD ["/usr/sbin/sshd", "-D", "-p", "37241"]
+
 
 USER tsmh
 WORKDIR /home/tsmh
-
