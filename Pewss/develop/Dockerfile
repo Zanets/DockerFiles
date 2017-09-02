@@ -37,12 +37,12 @@ COPY cert.pem Server/Secrets/TLS
 COPY key.pem Server/Secrets/TLS
 COPY Config.json Server/Secrets/
 
-EXPOSE 8081 37241
+EXPOSE 8081 22
  
 RUN useradd -ms /usr/bin/zsh tsmh
 RUN usermod -aG sudo tsmh
 RUN echo 'tsmh:tsmh' | chpasswd
-CMD ["/usr/sbin/sshd", "-D", "-p", "37241"]
+CMD ["/usr/sbin/sshd", "-D"]
 
 
 USER tsmh
