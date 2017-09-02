@@ -11,7 +11,6 @@ RUN apt-get update \
 	  redis-server \
 	  tmux \
 	  default-jdk \
-    openssh-server
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.4.0
@@ -24,7 +23,6 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 RUN mkdir /Pewss
-RUN mkdir /var/run/sshd
 WORKDIR /Pewss
 RUN git clone https://github.com/darg20127/Pewss /Pewss
 RUN npm install -g yarn \
