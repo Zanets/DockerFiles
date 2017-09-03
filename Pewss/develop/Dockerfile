@@ -10,7 +10,7 @@ RUN apt-get update \
 	  mongodb \
 	  redis-server \
 	  tmux \
-	  default-jdk \
+	  default-jdk
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.4.0
