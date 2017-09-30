@@ -1,0 +1,17 @@
+FROM builder:pewss
+MAINTAINER tsmh
+
+
+RUN git clone https://github.com/darg20127/Pewss /Pewss
+WORKDIR /Pewss
+RUN mkdir Mongodb
+RUN npm install
+COPY Config.json Server/Secrets/
+RUN scripts/build.sh
+
+EXPOSE 8081
+
+ENV NODE_ENV production
+
+CMD ["scripts/start.sh"]
+
