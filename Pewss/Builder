@@ -1,8 +1,14 @@
 FROM ubuntu:latest
 MAINTAINER tsmh
-RUN apt update \
-    && apt upgrade -y \
-    && apt install -y \
+
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV TZ=Asia/Taipei
+
+RUN apt update && \
+	apt install tzdata
+
+RUN apt upgrade -y && \
+    apt install -y \
 	  vim \
 	  git \
 	  curl \
