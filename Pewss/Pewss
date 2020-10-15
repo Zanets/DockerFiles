@@ -2,11 +2,13 @@ FROM builder:pewss
 MAINTAINER tsmh
 
 
-RUN git clone https://github.com/darg20127/Pewss /Pewss
+RUN git clone https://github.com/Zanets/Pewss /Pewss
 WORKDIR /Pewss
 RUN mkdir Mongodb
 RUN npm install
-COPY Config.json Server/Secrets/
+COPY Secrets/Config.json Server/Secrets/
+COPY Secrets/TLS Server/Secrets/
+
 RUN scripts/build.sh
 
 EXPOSE 8081
